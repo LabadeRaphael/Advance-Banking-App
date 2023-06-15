@@ -1,0 +1,16 @@
+#Name,#PhoneNum,#ResidentialAddress,#Email,#Password,#ConfirmPassword,
+#depositAmount,#cvvNum,#expiryDate,#cardNumber,#pin,#expiryYear,#selectBank
+,#selectAccount,#bvn,#pinNumber{
+    animation: move 1s;
+    animation-iteration-count: 1;
+}
+@keyframes move {
+    0%{margin-left: 60px; background-color:antiquewhite;};
+    50%  {background-color:orange; left:50px;}
+    65%  {background-color:beige; left:50px;}
+    100%  {background-color:white; left:50px;}
+}
+input[type=number]::-webkit-inner-spin-button{
+    -webkit-appearance: none;
+    margin: 0;
+}
