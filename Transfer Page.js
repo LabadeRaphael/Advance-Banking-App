@@ -65,7 +65,7 @@ const transfer=()=>{
         document.getElementById("transferAmtMsg").innerText="The field is require"
     }else{
         if(accountNumber.value == ""){
-            document.getElementById("accountMsg").innerText="Fill this field  correctly"
+            document.getElementById("accountMsg").innerText="Fill this field correctly"
         }
         if(transferAmount.value == ""){
             document.getElementById("transferAmtMsg").innerText="Fill this field correctly"

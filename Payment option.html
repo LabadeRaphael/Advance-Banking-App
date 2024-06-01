@@ -53,12 +53,27 @@
                 </div>
                 <!-- bankAccountDetails -->
                 <div class="bankAccountDetails d-none">
-                    <label for="selectBank" class="fw-bold">Bank</label>
-                    <input type="text" class="form-control" id="selectBank" placeholder="select your bank">
-                    <label for="selectAccount" class="fw-bold mt-4">Enter your bank account</label>
-                    <input type="text" class="form-control" id="selectAccount" placeholder="Enter your bank account">
-                    <label for="bvn" class="fw-bold mt-4">Enter your BVN</label>
-                    <input type="text" class="form-control" id="bvn" placeholder="Enter your BVN">
+                    <label for="selectedBank" class="fw-bold">Bank Name</label>
+                    <select class="form-select form-select-sm" aria-label=".form-select-sm example" id="selectedBank">
+                        <option selected>Polaris</option>
+                        <option value="Guaranty Trust Bank">Guaranty Trust Bank</option>
+                        <option value="Union Bank For Africa">Union Bank For Africa</option>
+                        <option value="Zenith">Zenith</option>
+                        <option value="Access">Access</option>
+                        <option value="Ecobank">Ecobank</option>
+                        <option value="Fidelity">Fidelity</option>
+                        <option value="Kuda">Kuda</option>
+                        <option value="Monie point">Monie point</option>
+                        <option value="Palmpay">Palmpay</option>
+                        <option value="Opay">Opay</option>
+                    </select>
+                    <!-- <input type="text" class="form-control" id="selectBank" placeholder="select your bank"> -->
+                    <label for="accountNumber"class="fw-bold mt-4">Enter your Account Number</label>
+                    <input type="number" class="form-control account" id="accountNumber"placeholder="Enter your bank account" onkeyup="validateAccNum()">
+                    <div id="AccNumMsg" class="fw-bold text-danger"></div>
+                    <label for="bvnNum" class="fw-bold mt-4">Enter your BVN</label>
+                    <input type="number" class="form-control bvn" id="bvnNum" placeholder="Enter your BVN" onkeyup="validateBvnNum()">
+                    <div id="BvnNumMsg" class="fw-bold text-danger"></div>
                     <div class="btn fw-bold btn-info ms-lg-2 mb-0 mt-3 border-top-0 border-start-0 border-end-0 border border-5 text-success" style="text-decoration:none;" onclick="bankAccountConfirmBtn()">Confirm</div>
                 </div>
             </div>

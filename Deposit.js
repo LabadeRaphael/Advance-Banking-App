@@ -26,7 +26,6 @@ const initDeposit=()=>{
     let depositAmt=depositAmount.value
     if (checkDepositAmount == "true") {
         localStorage.setItem("depositAmt",depositAmt)
-
         window.location="Payment option.html"
     }
     if (depositAmt == "") {

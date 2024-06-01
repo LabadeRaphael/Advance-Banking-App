@@ -68,12 +68,16 @@ const validateExpiryDate=()=>{
 
 const validateExpiryYear=()=>{
     let expYear=expiryYear.value
+    let d=new Date()
+    let year=d.getFullYear()
+    let twoDigitYear = year.toString().substr(-2);
+
     if (expYear.length<2 || expYear.length>2) {
         document.querySelector(".expiryYear").classList.add("is-invalid")   
         document.getElementById("expiryYearMsg").innerText="Enter two digits number"
         localStorage.setItem("isExpiryYearCorrect",false)
     }
-    else if (expYear<23 || expYear==0) {
+    else if (expYear<twoDigitYear || expYear==0) {
         document.querySelector(".expiryYear").classList.add("is-invalid")   
         document.getElementById("expiryYearMsg").innerText="Enter valid Year"
         localStorage.setItem("isExpiryYearCorrect",false)
@@ -132,7 +136,7 @@ const debitCardConfirmBtn=()=>{
         const months = ["January","February","March","April","May","June","July","August","September","October","November","December"];
         let amPm=d.getHours()>=12?"pm":"am"
         let currentUserHistory={
-          transactionType:"deposit",
+          transactionType:"deposit with card",
           amount:getDepositAmt,
           date:`${months[d.getMonth()]} / ${d.getDate()} / ${d.getFullYear()}`,
           time:`${d.getHours()>12 ? d.getHours()-12:d.getHours()}:${d.getMinutes()}${amPm}`
@@ -167,7 +171,68 @@ const debitCardConfirmBtn=()=>{
         }
     }
 }
-const bankAccountConfirmBtn=()=>{ 
-    localStorage.setItem('paymentOption', "BankAccount")
+const validateAccNum=()=>{
+    let accountNum = accountNumber.value
+    if (accountNum.length>10 || accountNum.length<10) {
+        document.querySelector(".account").classList.add("is-invalid")
+        document.getElementById("AccNumMsg").innerText="Enter 10 digits number"
+        localStorage.setItem("isBankAccountNumberCorrect",false)
+    }else{
+        document.querySelector(".account").classList.remove("is-invalid")
+        document.querySelector(".account").classList.add("is-valid")
+        document.getElementById("AccNumMsg").innerText=""
+        localStorage.setItem("isBankAccountNumberCorrect",true)
+    }
 
+}
+const validateBvnNum=()=>{
+    let bvn = bvnNum.value
+    if (bvn.length>11 || bvn .length<11) {
+        document.querySelector(".bvn").classList.add("is-invalid")
+        document.getElementById("BvnNumMsg").innerText="Enter 11 digits number"
+        localStorage.setItem("isBankBvnNumberCorrect",false)
+    }else{
+        document.querySelector(".bvn").classList.remove("is-invalid")
+        document.querySelector(".bvn").classList.add("is-valid")
+        document.getElementById("BvnNumMsg").innerText=""
+        localStorage.setItem("isBankBvnNumberCorrect",true)
+    }
+}
+const bankAccountConfirmBtn=()=>{ 
+    localStorage.setItem('paymentOption', "Bank Account")
+    document.getElementById("selectBank")
+    let bankName = selectedBank.value
+    let accNum = accountNumber.value
+    let bvn=bvnNum.value
+    localStorage.setItem('bankName',bankName)
+    if (accNum == "" && bvn == "") {
+        document.getElementById("AccNumMsg").innerText ="This field is require";
+        document.getElementById("BvnNumMsg").innerText ="This field is require";
+
+    }
+    else if (accNum == "") {
+        document.getElementById("AccNumMsg").innerText ="Fill this field correctly";
+    }
+    else if (bvn == "") {
+        document.getElementById("BvnNumMsg").innerText ="Fill this field correctly";
+    }
+    else{
+        let checkBankBvn=localStorage.getItem("isBankBvnNumberCorrect")
+        let checkBankAccNum=localStorage.getItem("isBankAccountNumberCorrect")
+        if (checkBankBvn == "true" && checkBankAccNum == "true") {
+            getCurrentUserDetails.userBalance = parseInt(getCurrentUserDetails.userBalance) + parseInt(getDepositAmt)
+            let d=new Date()
+            const months = ["January","February","March","April","May","June","July","August","September","October","November","December"];
+            let amPm=d.getHours()>=12?"pm":"am"
+            let currentUserHistory={
+              transactionType:"deposit with bank",
+              amount:getDepositAmt,
+              date:`${months[d.getMonth()]} / ${d.getDate()} / ${d.getFullYear()}`,
+              time:`${d.getHours()>12 ? d.getHours()-12:d.getHours()}:${d.getMinutes()}${amPm}`
+            }
+            getCurrentUserDetails.history.push(currentUserHistory)
+            localStorage.setItem('allUser', JSON.stringify(getallUserDetails))
+            window.location="Deposit Successful.html"
+        }
+    }
 }

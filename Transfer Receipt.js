@@ -21,7 +21,6 @@ getCurrentUserHistory.filter((item,index)=>{
     document.getElementById("transferAmount").innerText=`${getTransferAmount.toLocaleString("en-US", {style:"currency",currency:"USD"}).slice(1)}`
     document.getElementById("currentUserTransactionReference").innerText=`${Math.floor(Math.random()*1111111111111111111)}`
     if (item.transactionType == "money transfer") {
-        // alert("lloooo")
         document.getElementById("depositDate").innerText=getCurrentUserHistory[getLastIndex].date
         document.getElementById("depositTime").innerText=getCurrentUserHistory[getLastIndex].time
     }

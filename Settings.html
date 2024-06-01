@@ -15,14 +15,14 @@
             <div class="text-light fs-1 fw-bold mt-1 mt-lg-0" style="cursor: pointer;" onclick="backBtn()"><</div>
             <div class="text-light fs-2 fw-bold ms-5 mt-2">SETTINGS</div>
         </div>
-      <img src="" class="w-100" height="440vh" alt="..." id="displayImage">
+      <img src="account.png" class="w-100" height="440vh" alt="UserImage.png" id="displayImage" style="cursor: pointer;">
     </div>
     <div class="col-md-6 p-4 ps-md-0" style="background-color: pink;">
         <div class="container">
             <div class="row">
                 <div class="col-12 shadow p-3 mt-lg-2">
                     <div class="mb-3 ps-lg-5 pe-lg-5 ps-2 pe-2">
-                     <div id="fill" class="pt-2"></div>
+                     <div id="resetSuccessful"pt-2"></div>
                      <div class="form-floating-sm mb-3 ps-lg-5 ps-3 pe-2 col-lg-12">
                     <label for="Name"class="mt-1 fw-bold">Full Name</label>
                     <input type="text" class="form-control fw-bold Name" id="Name" onkeyup="validateName()">
@@ -48,6 +48,7 @@
         </div>
     </div>
 </div>
+<input type="file" id="fileInput" style="display: none;">
 </body>
 <script src="Settings.js"></script>
 </html>
